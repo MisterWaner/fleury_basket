@@ -15,3 +15,9 @@ public/uploads/*
 
 # --- Logs ---
 *.log
+
+# --- Binaires ---
+tailwind
+tailwind.exe
+tailwind-linux-x64
+tailwind-windows-x64.exe

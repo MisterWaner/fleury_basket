@@ -53,19 +53,33 @@ switch ($requestUri) {
     case '/':
     case '/home':
         require_once SRC_PATH . '/Views/home.php';
-        try {
-            $db = \App\Config\Database::getConnection();
-            echo "<p>Connexion à la base de données réussie ! 🏀</p>";
-        } catch (\Exception $e) {
-            echo "<p>Erreur lors de la connexion à la base de données : " . $e->getMessage() . "</p>";
-        }
         break;
-    case '/blog':
+    case '/actualites':
         require_once SRC_PATH . '/Views/blog/index.php';
         break;
-    
+    case '/equipes':
+        require_once SRC_PATH . '/Views/teams/index.php';
+        break;
+    case '/club/a-propos':
+        require_once SRC_PATH . '/Views/club/about.php';
+        break;
+    case '/club/organigramme':
+        require_once SRC_PATH . '/Views/club/organigramme.php';
+        break;
+    case '/club/partenaires':
+        require_once SRC_PATH . '/Views/club/sponsors.php';
+        break;
+    case '/contact':
+        require_once SRC_PATH . '/Views/contact.php';
+        break;
+    case '/inscription':
+        require_once SRC_PATH . '/Views/inscription.php';
+        break;
+    case '/faq':
+        require_once SRC_PATH . '/Views/faq.php';
+        break;
     default:
         http_response_code(404);
-        echo "<h1>404 - Page non trouvée</h1><p>Désolé, le panier est vide ! 🏀</p>";
+        require_once SRC_PATH . '/Views/not-found.php';
         break;
 }

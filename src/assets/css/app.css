@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+@theme inline {
+    --color-fleury-pink: var(--fleury-pink);
+    --font-montserrat: "Montserrat", sans-serif;
+    --font-libre-baskerville: "Libre Baskerville", serif;
+}
+
+:root {
+    --fleury-pink: oklch(92.788% 0.0366 17.674);
+}
+
+.landing-section {
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/assets/images/ballon-basket.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.65);
+    background-blend-mode: color;
+}
+
+.heading-1 {
+    @apply text-center uppercase font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl my-8;
+}
