@@ -8,26 +8,10 @@ define('ROOT_PATH', dirname(__DIR__)); // This will point to the parent director
 define('SRC_PATH', ROOT_PATH . '/src');
 
 // Autoloader
-spl_autoload_register(function (string $className) {
-    $prefix = 'App\\';
+// 3. Automatic class loading using Composer's autoloader
+require_once ROOT_PATH . '/vendor/autoload.php';
 
-    $baseDir = SRC_PATH . '/';
-
-    $len = strlen($prefix);
-    if (strncmp($prefix, $className, $len) !== 0) {
-        return;
-    }
-
-    $relativeClass = substr($className, $len);
-
-    $file = $baseDir . str_replace('\\', '/', $relativeClass) . '.php';
-
-    if (file_exists($file)) {
-        require_once $file;
-    }
-});
-
-// 3. Load environment variables from the ".env" file
+// 4. Load environment variables from the ".env" file
 if (file_exists(ROOT_PATH . '/.env')) {
     $lines = file(ROOT_PATH . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
@@ -44,42 +28,18 @@ if (file_exists(ROOT_PATH . '/.env')) {
 }
 
 
-// 4. Rooting system for better organization
-// We get only the path from the URL, without query parameters
-$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// 5. Rooting system for better organization
+use App\Router;
+$router = new Router();
 
-// 5. Basic routing system
-switch ($requestUri) {
-    case '/':
-    case '/home':
-        require_once SRC_PATH . '/Views/home.php';
-        break;
-    case '/actualites':
-        require_once SRC_PATH . '/Views/blog/index.php';
-        break;
-    case '/equipes':
-        require_once SRC_PATH . '/Views/teams/index.php';
-        break;
-    case '/club/a-propos':
-        require_once SRC_PATH . '/Views/club/about.php';
-        break;
-    case '/club/organigramme':
-        require_once SRC_PATH . '/Views/club/organigramme.php';
-        break;
-    case '/club/partenaires':
-        require_once SRC_PATH . '/Views/club/sponsors.php';
-        break;
-    case '/contact':
-        require_once SRC_PATH . '/Views/contact.php';
-        break;
-    case '/inscription':
-        require_once SRC_PATH . '/Views/inscription.php';
-        break;
-    case '/faq':
-        require_once SRC_PATH . '/Views/faq.php';
-        break;
-    default:
-        http_response_code(404);
-        require_once SRC_PATH . '/Views/not-found.php';
-        break;
-}
+// 6. Define routes using the Router class
+$router->get('/', 'home'); 
+$router->get('/actualites', 'blog/index');
+$router->get('/equipes', 'teams/index'); 
+$router->get('/club/a-propos', 'club/about'); 
+$router->get('/club/organigramme', 'club/organigramme');
+$router->get('/club/partenaires', 'club/sponsors'); 
+$router->get('/contact','contact'); 
+$router->get('/inscription', 'inscription'); 
+$router->get('/faq', 'faq'); 
+$router->run();
