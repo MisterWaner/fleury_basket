@@ -24,6 +24,36 @@
     background-blend-mode: color;
 }
 
+/***** Headings *****/
 .heading-1 {
     @apply text-center uppercase font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl my-8;
+}
+.heading-2 {
+    @apply text-center font-montserrat text-3xl sm:text-4xl md:text-5xl mb-8;
+}
+
+/***** Wrapper *****/
+.wrapper {
+    @apply mt-10 mx-10 lg:mx-20 xl:mx-auto xl:max-w-7xl;
+}
+
+/***** Carousel Animation *****/
+@keyframes carousel {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-carousel {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    animation: carousel 30s linear infinite;
+}
+
+.animate-carousel:hover {
+    animation-play-state: paused;
 }

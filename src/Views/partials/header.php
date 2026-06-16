@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Fleury Sur Orne Basket</title>
         <link rel="stylesheet" href="/assets/css/style.css" />
+        <script defer src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
     </head>
     <body
         class="antialiased bg-fleury-pink/75 text-slate-950 min-h-screen flex flex-col"
@@ -32,5 +33,4 @@
         </header>
 
         <main class="flex flex-col flex-1">
-    </body>
-</html>
+

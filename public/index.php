@@ -33,7 +33,7 @@ use App\Router;
 $router = new Router();
 
 // 6. Define routes using the Router class
-$router->get('/', 'home'); 
+$router->get('/', 'home/home'); 
 $router->get('/actualites', 'blog/index');
 $router->get('/equipes', 'teams/index'); 
 $router->get('/club/a-propos', 'club/about'); 

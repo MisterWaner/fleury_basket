@@ -9,13 +9,9 @@
     </h1>
 </section>
 
-<section class="next-match">
-    <h2>Prochain Match</h2>
-    <div class="match-card">
-        <div class="team">Notre Équipe</div>
-        <div class="vs">VS</div>
-        <div class="team">Adversaire</div>
-    </div>
-</section>
+<div class="wrapper">
+    <?php include SRC_PATH . '/Views/home/valor-section.php'; ?>
+    <?php include SRC_PATH . '/Views/home/sponsors-section.php'; ?>
+</div>
 
 <?php include SRC_PATH . '/Views/partials/footer.php'; ?>
