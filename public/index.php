@@ -42,4 +42,5 @@ $router->get('/club/partenaires', 'club/sponsors');
 $router->get('/contact','contact'); 
 $router->get('/inscription', 'inscription'); 
 $router->get('/faq', 'faq'); 
+$router->get('/politique-de-confidentialite', 'privacy-policy');
 $router->run();

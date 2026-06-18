@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4"">
             <section class="flex flex-col lg:flex-row align-center items-center md:space-x-6">
                 <img src="/assets/images/sponsors/logo-fleury.jpg" alt="Logo de Fleury sur Orne"  class="mb-4" width="150" height="50"/>
-                <a href="#" target="_blank" rel="noopener noreferrer"class="underline underline-offset-4 hover:text-pink-500">Politique de confidentialité</a>
+                <a href="/politique-de-confidentialite" target="_blank" rel="noopener noreferrer"class="underline underline-offset-4 hover:text-pink-500">Politique de confidentialité</a>
             </section>
             <section class="flex flex-col md:flex-row md:justify-around align-center items-center md:space-x-6 md:col-span-2">
                 <div class="flex flex-row items-center align-center space-x-4 mt-4">
