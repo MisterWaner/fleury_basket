@@ -10,7 +10,7 @@ $sponsors = [
 ];
 ?>
 
-<div class="w-full mt-10 py-10  overflow-hidden">
+<div class="w-full mt-10 py-10 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 mb-8">
         <h2 class="heading-2">
             Nos <span class="uppercase font-extrabold">Partenaires</span>

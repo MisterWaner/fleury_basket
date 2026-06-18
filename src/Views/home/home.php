@@ -12,6 +12,7 @@
 <div class="wrapper">
     <?php include SRC_PATH . '/Views/home/valor-section.php'; ?>
     <?php include SRC_PATH . '/Views/home/sponsors-section.php'; ?>
+    <?php include SRC_PATH . '/Views/home/find-us.php'; ?>
 </div>
 
 <?php include SRC_PATH . '/Views/partials/footer.php'; ?>

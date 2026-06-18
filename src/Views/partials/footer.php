@@ -14,8 +14,20 @@
                         rel="noopener noreferrer"
                         class="text-slate-50 hover:text-pink-500"
                     >
-                        <iconify-icon icon="fa6-brands:instagram" class="size-6" width="100%" height="100%"></iconify-icon>
+                        <iconify-icon icon="fa6-brands:instagram" class="size-6 flex items-center justify-center" width="100%" height="100%"></iconify-icon>
                     </a>
+                    <a 
+                        href="https://www.tiktok.com/@fsobasket"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-slate-50 hover:text-pink-500"
+                    >
+                        <iconify-icon icon="fa6-brands:tiktok" class="size-6 flex items-center justify-center" width="100%" height="100%"></iconify-icon>
+                    </a>
+                </div>
+                <div class="text-sm text-center flex flex-col md:flex-row items-center align-center space-x-4 mt-4">
+                    <p>&copy; 2026 - Club de basket-ball de Fleury sur Orne - Tous droits réservés.</p>
+                    <p>Réalisé par E. Soulas</p>
                 </div>
             </section>
         </div>
