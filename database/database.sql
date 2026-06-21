@@ -1,0 +1,110 @@
+CREATE DATABASE IF NOT EXISTS fleury_basket;
+USE fleury_basket;
+
+DROP TABLE IF EXISTS match_results;
+DROP TABLE IF EXISTS team_standings;
+DROP TABLE IF EXISTS teams;
+DROP TABLE IF EXISTS seasons;
+DROP TABLE IF EXISTS articles;
+DROP TABLE IF EXISTS flash_infos;
+DROP TABLE IF EXISTS sponsors;
+DROP TABLE IF EXISTS users;
+
+-- ================================
+-- AUTHENTICATION & CONFIGURATION
+-- ================================
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS seasons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL UNIQUE,
+    is_current BOOLEAN DEFAULT FALSE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ===================
+-- CONTENT MANAGEMENT
+-- ===================
+
+CREATE TABLE IF NOT EXISTS articles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    content TEXT NOT NULL,
+    image_url VARCHAR(255) NULL,
+    user_id INT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS flash_infos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    message VARCHAR(255) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    end_date DATE NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ========================
+-- SPONSORSHIP MANAGEMENT
+-- ========================
+
+CREATE TABLE IF NOT EXISTS sponsors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    logo_url VARCHAR(255) NOT NULL,
+    link_url VARCHAR(255) NULL,
+    description TEXT NULL,
+    tier VARCHAR(50) DEFAULT 'Club',
+    is_active BOOLEAN DEFAULT TRUE,
+    position INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- =======================================
+-- TEAMS, MATCHES AND STANDINGS MANAGEMENT
+-- =======================================
+
+CREATE TABLE IF NOT EXISTS teams (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    category VARCHAR(50) NOT NULL,
+    image_url VARCHAR(255) NULL,
+    season_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (season_id) REFERENCES seasons(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS team_standings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    team_id INT NOT NULL,
+    points INT DEFAULT 0,
+    played INT DEFAULT 0,
+    won INT DEFAULT 0,
+    lost INT DEFAULT 0,
+    drawn INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS match_results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    team_id INT NOT NULL,
+    opponent VARCHAR(255) NOT NULL,
+    score_home INT DEFAULT 0,
+    score_away INT DEFAULT 0,
+    is_home_match BOOLEAN NOT NULL,
+    match_date DATETIME NOT NULL,
+    season_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
